@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Sign Up Page</title>
+  <style>
+h1 {
+  background-color: red;
+}
+
+.txt {
+  background-color: orange;
+}
+
+.txt1 {
+  background-color: yellow;
+}
+
+.txt2 {
+  background-color: green;
+}
+
+.txt3 {
+  background-color: rgb(16, 166, 216);
+}
+
+.txt4 {
+  background-color: rgb(241, 85, 241);
+}
+
+  </style>
+</head>
+<body>
+  <h1>Course Sign Up Page</h1>
+  <p class="txt">
+    Please Note: First name, Last Name, Password, and Email are required
+  </p>
+
+  <form>
+    <div class="txt1">
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="Email" required>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" placeholder="Password" required>
+    </div>
+    
+    <div class="txt2">
+      <p>
+        Are you over the age of 18?
+        <br>
+        Yes: <input type="radio" name="over18" value="yes">
+        No: <input type="radio" name="over18" value="no">
+      </p>
+    </div>
+
+    <div class="txt3">
+      <p>
+        Do you have a Credit Card or PayPal?
+        <br>
+        <select name="payment" required>
+          <option value="">--Select--</option>
+          <option value="credit">Credit Card</option>
+          <option value="paypal">PayPal</option>
+        </select>
+        <button>
+          Submit feedback
+        </button>
+      </p>
+    </div>
+
+    <div class="txt4">
+      <a href="#">Back</a>
+      <a href="#">Next</a>
+    </div>
+  </form>
+</body>
+</html>
