@@ -1,3 +1,7 @@
+<!-- Tugas membuat halaman login page -->
+<!-- Nama: Earthen Krisdian Setya -->
+<!-- NIM: 23502410009 -->
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -40,28 +44,31 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: rgb(83,52,130);
             font-size: 2rem;
+            box-shadow: 4px 4px 10px 5px rgba(0, 0, 0, 0.1);
         }
         
         .login-title {
             color: #333;
-            font-size: 1.8rem;
-            font-weight: 600;
+            font-size: 1.3rem;
+            font-weight: 700;
             margin-bottom: 10px;
         }
         
         .login-subtitle {
-            color: #888;
+            color: rgb(193,193,196);
+            font-weight: 450;
             font-size: 0.9rem;
             margin-bottom: 30px;
         }
         
         .form-label {
-            color: #555;
+            color: rgb(101,101,101);
             font-weight: 500;
             text-align: left;
             margin-bottom: 8px;
+            display: flex;
         }
         
         .form-control {
@@ -90,13 +97,15 @@
         }
         
         .form-check-label {
-            color: #555;
+            color: rgb(101,101,101);
+            font-weight: 500;
+            text-align: left;
         }
         
         .forgot-password {
-            color: #667eea;
+            color: rgb(108,131,234);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 700;
         }
         
         .forgot-password:hover {
@@ -142,6 +151,8 @@
         
         .divider span {
             background: white;
+            color: rgb(121,121,121);
+            font-weight: 500;
             padding: 0 15px;
             position: relative;
             z-index: 2;
@@ -157,6 +168,9 @@
             width: 100%;
             transition: all 0.3s ease;
             color: #555;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         
         .google-btn:hover {
@@ -169,17 +183,28 @@
             color: #db4437;
             margin-right: 10px;
         }
+
+        .google-btn span {
+            color: #db4437;
+            font-size: 1rem;
+            font-weight: 700;
+        }
         
         .signup-link {
             margin-top: 25px;
             font-size: 0.9rem;
             color: #666;
         }
+
+        .signup-link span {
+            color: rgb(121,121,121);
+            font-weight: 500;
+        }
         
         .signup-link a {
             color: #667eea;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 750;
         }
         
         .signup-link a:hover {
@@ -239,11 +264,12 @@
             
             <button type="button" class="btn google-btn">
                 <i class="fab fa-google"></i>
-                Google
+                <span>Google</span>
             </button>
             
             <div class="signup-link">
-                Belum punya akun? <a href="#">Daftar Sekarang</a>
+                <span>Belum punya akun?</span>
+                <a href="#">Daftar Sekarang</a>
             </div>
         </div>
     </div>
