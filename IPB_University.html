@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IPB University</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .container_navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+        height: 120px;
+        background-color: white;
+      }
+
+      .logo_ipb {
+        height: 70px;
+        margin-left: 70px;
+      }
+
+      .navbar_menu {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        margin-right: 100px;
+      }
+
+      .navbar_item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .navbar_h3 {
+        font-weight: 400;
+        white-space: nowrap;
+      }
+
+      .slogan {
+        text-align: center;
+        margin: 50px auto;
+        padding: 0 20px;
+      }
+
+      .slogan_img {
+        height: 40px;
+        max-width: 100%;
+        height: auto;
+      }
+
+      .slogan_h1 {
+        margin-top: 5px;
+      }
+
+      .gambar_menu1 {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      @media (max-width: 1200px) {
+        .navbar_menu .navbar_item:nth-child(4),
+        .navbar_menu .navbar_item:nth-child(5) {
+          display: none;
+        }
+      }
+
+      @media (max-width: 900px) {
+        .navbar_menu {
+          display: none;
+        }
+
+        .container_navbar .fa-bars {
+          display: block !important;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .logo_ipb {
+          height: 50px;
+        }
+      }
+
+      @media (min-width: 901px) {
+        .container_navbar .fa-bars {
+          display: none;
+        }
+      }
+
+      .container_navbar_3menu {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .navbar_3menu {
+        border: 2px solid black;
+        padding: 0 50px;
+        border-radius: 25px;
+      }
+
+      .h2_navbar_3menu {
+        opacity: 0.7;
+        font-weight: 100;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container_navbar">
+      <img
+        src="https://www.ipb.ac.id/wp-content/uploads/2025/08/Logo-IPB-New.png"
+        alt="IPB University"
+        class="logo_ipb"
+      />
+      <div class="navbar_menu">
+        <div class="navbar_item">
+          <h3 class="navbar_h3">TENTANG IPB</h3>
+          <i class="fa-solid fa-caret-down"></i>
+        </div>
+        <div class="navbar_item">
+          <h3 class="navbar_h3">ADMISI</h3>
+          <i class="fa-solid fa-caret-down"></i>
+        </div>
+        <div class="navbar_item">
+          <h3 class="navbar_h3">PROGRAM STUDI</h3>
+          <i class="fa-solid fa-caret-down"></i>
+        </div>
+        <div class="navbar_item">
+          <h3 class="navbar_h3">CALON MAHASISWA</h3>
+          <i class="fa-solid fa-caret-down"></i>
+        </div>
+        <div class="navbar_item">
+          <h3 class="navbar_h3">MAHASISWA</h3>
+          <i class="fa-solid fa-caret-down"></i>
+        </div>
+
+        <div class="navbar_item">
+          <i class="fa-solid fa-bars" style="display: flex"></i>
+          <i class="fa-solid fa-caret-down"></i>
+        </div>
+
+        <div class="navbar_item">
+          <img
+            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAALCAMAAABBPP0LAAAARVBMVEXfAgDPAADskYrvh4Dsd27qa2PoYVi9AADmV03kTULiQzfeMyf2vrryq6ftoJvMGA/8/Pz5+fn39/fz8/Pm5ubg4ODt7u3lScs2AAAAR0lEQVR4AQXBsRGDQBAAMe39e0gcuP86CTEgBSAgIwipzYiMdBmJjITNMJJYd58jhBPf+kEiaCARaFIiWEyA58Gf3bJwI3gBwHkHZeHbupcAAAAASUVORK5CYII="
+          />
+          <i class="fa-solid fa-caret-down"></i>
+        </div>
+
+        <div class="navbar_item">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <img
+        class="gambar_menu1"
+        src="https://www.ipb.ac.id/wp-content/uploads/2025/08/1-ind.png"
+        alt="WS World University rankings 2026"
+      />
+    </div>
+
+    <div class="slogan">
+      <img
+        class="slogan_img"
+        src="https://www.ipb.ac.id/wp-content/uploads/2023/04/inspiring_inovation.png"
+        alt="Slogan"
+      />
+      <h1 class="slogan_h1">
+        in Agriculture, Ocean and Biosciences for a Sustainable World
+      </h1>
+
+      <!-- ISENG ISENG -->
+      <div class="container_navbar_3menu">
+        <div class="navbar_3menu" style="background-color: rgb(0, 0, 166);">
+          <h2 style="
+          color: rgb(188, 188, 22);
+          font-weight: 100;
+          ">Berita</h2>
+        </div>
+
+        <div class="navbar_3menu">
+          <h2 class="h2_navbar_3menu">Artikel</h2>
+        </div>
+
+        <div class="navbar_3menu">
+          <h2 class="h2_navbar_3menu">Media IPB</h2>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
