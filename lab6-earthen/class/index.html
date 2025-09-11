@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+      }
+
+      .left-section {
+        width: 50%;
+        position: relative;
+        background: linear-gradient(
+          135deg,
+          #1e3c72 0%,
+          #2a5298 50%,
+          #4facfe 100%
+        );
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 2rem;
+        color: white;
+      }
+
+      .left-section::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 20%;
+        background: linear-gradient(
+          90deg,
+          #ff6b6b,
+          #4ecdc4,
+          #45b7d1,
+          #96ceb4,
+          #ffeaa7
+        );
+      }
+
+      .campus-image {
+        top: 0;
+        left: 0;
+        width: 50vw;
+        margin: 0;
+        padding: 0;
+        border: none;
+      }
+
+      .right-section {
+        width: 50%;
+        background: #f8f9fa;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+      }
+
+      .login-container {
+        width: 100%;
+        max-width: 400px;
+      }
+
+      .welcome-title {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 0.5rem;
+      }
+
+      .welcome-subtitle {
+        color: #666;
+        margin-bottom: 2rem;
+        font-size: 0.95rem;
+      }
+
+      .form-label {
+        font-weight: 500;
+        color: #333;
+        margin-bottom: 0.5rem;
+        display: block;
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 2px solid #e0e0e0;
+        border-radius: 5px;
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+        transition: border-color 0.3s ease;
+      }
+
+      .form-control:focus {
+        outline: none;
+        border-color: #4facfe;
+        box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.1);
+      }
+
+      .form-control::placeholder {
+        color: #aaa;
+      }
+
+      .password-container {
+        position: relative;
+      }
+
+      .password-toggle {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #666;
+      }
+
+      .forgot-password {
+        display: block;
+        text-align: right;
+        color: #4facfe;
+        text-decoration: none;
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .forgot-password:hover {
+        text-decoration: underline;
+      }
+
+      .captcha-container {
+        margin-bottom: 1.5rem;
+      }
+
+      .captcha-checkbox {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 15px;
+        border: 2px solid #e0e0e0;
+        border-radius: 5px;
+        background: #fafafa;
+      }
+
+      .captcha-checkbox input {
+        width: 20px;
+        height: 20px;
+      }
+
+      .sign-in-btn {
+        width: 100%;
+        background: #1e3c72;
+        color: white;
+        border: none;
+        padding: 0.875rem 1rem;
+        border-radius: 5px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        margin-bottom: 1.5rem;
+        transition: background-color 0.3s ease;
+      }
+
+      .sign-in-btn:hover {
+        background: #2a5298;
+      }
+
+      .signup-link {
+        text-align: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .signup-link a {
+        color: #4facfe;
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .signup-link a:hover {
+        text-decoration: underline;
+      }
+
+      .browser-notice {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 15px;
+        border-radius: 5px;
+        font-size: 0.9rem;
+        color: #856404;
+      }
+
+      .warning-icon {
+        width: 20px;
+        height: 20px;
+        background: red;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 14px;
+      }
+
+      .error-message {
+        color: #dc3545;
+        font-size: 0.85rem;
+        margin-top: -0.5rem;
+        margin-bottom: 0.5rem;
+      }
+    </style>
+  </head>
+  <body class="main-container">
+    <img class="campus-image" src="prasmul.png" alt="prasmul" />
+
+    <div class="right-section">
+      <div class="login-container">
+        <h1 class="welcome-title">Welcome</h1>
+        <p class="welcome-subtitle">Please enter your login credentials</p>
+
+        <form>
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              placeholder="Enter your email"
+              id="email"
+              required
+            />
+            <div class="error-message" id="email-error" style="display: none">
+              Please input Email
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Password</label>
+            <div class="password-container">
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Enter your password"
+                id="password"
+                required
+              />
+              <span class="password-toggle" onclick="togglePassword()">👁</span>
+            </div>
+            <a href="#" class="forgot-password">Forgot password?</a>
+          </div>
+
+          <div class="captcha-container">
+            <div class="captcha-checkbox">
+              <input type="checkbox" id="captcha" required />
+              <label for="captcha">I'm not a robot</label>
+              <div style="margin-left: auto; font-size: 12px; color: #666">
+                reCAPTCHA
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="sign-in-btn">SIGN IN</button>
+        </form>
+
+        <div class="signup-link">
+          Don't have an account? <a href="#">Sign up</a>
+        </div>
+
+        <div class="browser-notice">
+          <div class="warning-icon">!</div>
+          <span
+            >Please use <strong>Google Chrome</strong> or
+            <strong>Mozilla Firefox</strong> for best experience.</span
+          >
+        </div>
+      </div>
+    </div>
+    <script>
+      function togglePassword() {
+        const passwordField = document.getElementById("password");
+        const toggleButton = document.querySelector(".password-toggle");
+
+        if (passwordField.type === "password") {
+          passwordField.type = "text";
+          toggleButton.textContent = "🙈";
+        } else {
+          passwordField.type = "password";
+          toggleButton.textContent = "👁";
+        }
+      }
+
+      document.getElementById("email").addEventListener("blur", function () {
+        const email = this.value;
+        const errorDiv = document.getElementById("email-error");
+
+        if (!email) {
+          errorDiv.style.display = "block";
+          this.style.borderColor = "#dc3545";
+        } else {
+          errorDiv.style.display = "none";
+          this.style.borderColor = "#e0e0e0";
+        }
+      });
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
