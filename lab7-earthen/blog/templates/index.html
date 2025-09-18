@@ -1,0 +1,169 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Daftar Mahasiswa</title>
+    <link rel="stylesheet" href="{% static 'blog/style.css' %}" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Daftar Mahasiswa</h1>
+
+      <form
+        method="post"
+        action="{% url 'daftar_mahasiswa' %}"
+        style="margin-bottom: 20px"
+      >
+        {% csrf_token %}
+        <input type="hidden" name="action" value="add" />
+
+        <input type="text" name="nim" placeholder="NIM" required />
+        <input type="text" name="firstname" placeholder="Nama Depan" required />
+        <input
+          type="text"
+          name="lastname"
+          placeholder="Nama Belakang"
+          required
+        />
+        <input type="text" name="jurusan" placeholder="Jurusan" required />
+
+        <button type="submit">TAMBAH DATA</button>
+      </form>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>NIM</th>
+            <th>Nama</th>
+            <th>Jurusan</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for m in mymahasiswa %}
+          <tr>
+            <td>
+              <form
+                method="post"
+                action="{% url 'daftar_mahasiswa' %}"
+                style="display: inline"
+              >
+                {% csrf_token %}
+                <input type="hidden" name="action" value="update" />
+                <input type="hidden" name="id" value="{{ m.id }}" />
+                <input
+                  type="text"
+                  name="nim"
+                  value="{{ m.nim|default:'' }}"
+                  class="table-input nim-input"
+                />
+              </form>
+            </td>
+            <td>
+              <form
+                method="post"
+                action="{% url 'daftar_mahasiswa' %}"
+                style="display: inline"
+              >
+                {% csrf_token %}
+                <input type="hidden" name="action" value="update" />
+                <input type="hidden" name="id" value="{{ m.id }}" />
+                <input
+                  type="text"
+                  name="firstname"
+                  value="{{ m.firstname|default:'' }}"
+                  class="table-input"
+                  style="width: 48%; margin-right: 2%"
+                />
+                <input
+                  type="text"
+                  name="lastname"
+                  value="{{ m.lastname|default:'' }}"
+                  class="table-input"
+                  style="width: 48%"
+                />
+              </form>
+            </td>
+            <td>
+              <form
+                method="post"
+                action="{% url 'daftar_mahasiswa' %}"
+                style="display: inline"
+              >
+                {% csrf_token %}
+                <input type="hidden" name="action" value="update" />
+                <input type="hidden" name="id" value="{{ m.id }}" />
+                <input
+                  type="text"
+                  name="jurusan"
+                  value="{{ m.jurusan|default:'' }}"
+                  class="table-input jurusan-input"
+                />
+              </form>
+            </td>
+            <td>
+              <div class="action-buttons">
+                <!-- Update Button -->
+                <form
+                  method="post"
+                  action="{% url 'daftar_mahasiswa' %}"
+                  style="display: inline"
+                >
+                  {% csrf_token %}
+                  <input type="hidden" name="action" value="update" />
+                  <input type="hidden" name="id" value="{{ m.id }}" />
+                  <input type="hidden" name="nim" value="{{ m.nim }}" />
+                  <input
+                    type="hidden"
+                    name="firstname"
+                    value="{{ m.firstname }}"
+                  />
+                  <input
+                    type="hidden"
+                    name="lastname"
+                    value="{{ m.lastname }}"
+                  />
+                  <input type="hidden" name="jurusan" value="{{ m.jurusan }}" />
+                  <button
+                    type="submit"
+                    class="btn-update btn-small"
+                    onclick="return confirm('Apakah Anda yakin ingin mengupdate data ini?')"
+                  >
+                    UPDATE
+                  </button>
+                </form>
+
+                <!-- Delete Button -->
+                <form
+                  method="post"
+                  action="{% url 'daftar_mahasiswa' %}"
+                  style="display: inline"
+                >
+                  {% csrf_token %}
+                  <input type="hidden" name="action" value="delete" />
+                  <input type="hidden" name="id" value="{{ m.id }}" />
+                  <button
+                    type="submit"
+                    class="btn-delete btn-small"
+                    onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"
+                  >
+                    HAPUS
+                  </button>
+                </form>
+              </div>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="4">Belum ada data.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <p class="footer">Contoh styling sederhana dengan static files Django.</p>
+    </div>
+  </body>
+</html>
