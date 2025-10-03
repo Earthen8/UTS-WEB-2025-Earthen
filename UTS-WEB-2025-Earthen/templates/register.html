@@ -1,0 +1,573 @@
+<!-- Nama: Earthen Krisdian Setya -->
+<!-- NIM: 23502410009 -->
+<!-- Prodi: DBT24 -->
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration - COOP Program</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+      * {
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #0a2342 0%, #1a4066 50%, #0a2342 100%);
+        min-height: 100vh;
+        padding: 3rem 0;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+            circle at 20% 50%,
+            rgba(255, 193, 7, 0.1) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 80%,
+            rgba(255, 193, 7, 0.1) 0%,
+            transparent 50%
+          );
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .container {
+        position: relative;
+        z-index: 1;
+      }
+
+      .registration-card {
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        padding: 3rem;
+        max-width: 700px;
+        margin: 0 auto;
+        animation: slideUp 0.6s ease-out;
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .brand-logo {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .brand-logo img {
+        transition: transform 0.3s ease;
+      }
+
+      .brand-logo img:hover {
+        transform: scale(1.05);
+      }
+
+      .registration-header {
+        color: #0a2342;
+        font-weight: 700;
+        font-size: 1.75rem;
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+
+      .header-subtitle {
+        text-align: center;
+        color: #6c757d;
+        margin-bottom: 2rem;
+        font-size: 0.95rem;
+      }
+
+      .section-header {
+        color: #0a2342;
+        font-weight: 700;
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+        padding-left: 1rem;
+        border-left: 4px solid #ffc107;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .btn-gold {
+        background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%);
+        color: #000000;
+        border: none;
+        font-weight: 600;
+        padding: 0.75rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-gold::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+      }
+
+      .btn-gold:hover::before {
+        width: 300px;
+        height: 300px;
+      }
+
+      .btn-gold:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(255, 193, 7, 0.4);
+        color: #000000;
+      }
+
+      .registration-card .form-label {
+        font-weight: 600;
+        color: #0a2342;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .form-control,
+      .form-select {
+        border: 2px solid #e9ecef;
+        border-radius: 8px;
+        padding: 0.75rem;
+        transition: all 0.3s ease;
+      }
+
+      .form-control:focus,
+      .form-select:focus {
+        border-color: #ffc107;
+        box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.15);
+        transform: translateY(-2px);
+      }
+
+      .form-control:hover,
+      .form-select:hover {
+        border-color: #ffc107;
+      }
+
+      .login-link {
+        text-align: center;
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #e9ecef;
+      }
+
+      .login-link a {
+        color: #0a2342;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .login-link a:hover {
+        color: #ffc107;
+      }
+
+      .form-check-input {
+        border: 2px solid #dee2e6;
+        transition: all 0.3s ease;
+      }
+
+      .form-check-input:checked {
+        background-color: #ffc107;
+        border-color: #ffc107;
+      }
+
+      .form-check-input:focus {
+        border-color: #ffc107;
+        box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.15);
+      }
+
+      .form-check {
+        padding: 0.5rem;
+        border-radius: 8px;
+        transition: background-color 0.3s ease;
+      }
+
+      .form-check:hover {
+        background-color: #f8f9fa;
+      }
+
+      .alert {
+        border-radius: 10px;
+        border: none;
+        animation: slideDown 0.4s ease-out;
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .text-danger {
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+
+      .form-text {
+        font-size: 0.85rem;
+      }
+
+      .input-icon {
+        color: #ffc107;
+        font-size: 0.9rem;
+      }
+
+      .progress-indicator {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 2rem;
+        padding: 0 1rem;
+      }
+
+      .progress-step {
+        flex: 1;
+        text-align: center;
+        position: relative;
+      }
+
+      .progress-step::before {
+        content: "";
+        position: absolute;
+        top: 15px;
+        left: 50%;
+        right: -50%;
+        height: 2px;
+        background: #e9ecef;
+        z-index: 0;
+      }
+
+      .progress-step:last-child::before {
+        display: none;
+      }
+
+      .progress-step.active .step-circle {
+        background: #ffc107;
+        color: #000000;
+        box-shadow: 0 0 0 4px rgba(255, 193, 7, 0.2);
+      }
+
+      .step-circle {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: #e9ecef;
+        color: #6c757d;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 0.5rem;
+        font-weight: 600;
+        font-size: 0.875rem;
+        position: relative;
+        z-index: 1;
+        transition: all 0.3s ease;
+      }
+
+      .step-label {
+        font-size: 0.75rem;
+        color: #6c757d;
+        font-weight: 500;
+      }
+
+      .progress-step.active .step-label {
+        color: #0a2342;
+        font-weight: 600;
+      }
+
+      .form-control[type="file"] {
+        padding: 0.5rem;
+        cursor: pointer;
+      }
+
+      .form-control[type="file"]::file-selector-button {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 6px;
+        padding: 0.5rem 1rem;
+        margin-right: 1rem;
+        font-weight: 500;
+        color: #0a2342;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .form-control[type="file"]::file-selector-button:hover {
+        background: #ffc107;
+        border-color: #ffc107;
+        color: #000000;
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding: 1.5rem 0;
+        }
+
+        .registration-card {
+          padding: 2rem 1.5rem;
+        }
+
+        .brand-logo img {
+          max-width: 250px;
+        }
+
+        .registration-header {
+          font-size: 1.5rem;
+        }
+
+        .progress-indicator {
+          padding: 0;
+        }
+
+        .step-label {
+          font-size: 0.65rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="registration-card">
+        <div class="brand-logo">
+          <img src="https://www.prasetiyamulya.ac.id/wp-content/uploads/2020/01/Logo-Universitas-Prasetiya-Mulya.png" alt="Logo" width="350"/>
+        </div>
+        <h1 class="registration-header">COOP Program Registration</h1>
+        <p class="header-subtitle">Join our cooperative education program and kickstart your professional journey</p>
+
+        <div class="progress-indicator">
+          <div class="progress-step active">
+            <div class="step-circle">1</div>
+            <div class="step-label">Personal Info</div>
+          </div>
+          <div class="progress-step active">
+            <div class="step-circle">2</div>
+            <div class="step-label">Documents</div>
+          </div>
+        </div>
+
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {% if form.non_field_errors %}
+          <div class="alert alert-danger">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+            {% for error in form.non_field_errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+          {% endif %}
+
+          <div class="mb-4">
+            <h3 class="section-header">
+              <i class="bi bi-person-fill input-icon"></i>
+              Personal Information
+            </h3>
+
+            <div class="mb-3">
+              <label for="{{ form.nama_lengkap.id_for_label }}" class="form-label">
+                <i class="bi bi-person input-icon"></i>
+                Nama Lengkap
+              </label>
+              {{ form.nama_lengkap }}
+              {% for error in form.nama_lengkap.errors %}
+              <div class="text-danger small mt-1"><i class="bi bi-exclamation-circle me-1"></i>{{ error }}</div>
+              {% endfor %}
+            </div>
+
+            <div class="mb-3">
+              <label for="{{ form.nim.id_for_label }}" class="form-label">
+                <i class="bi bi-card-text input-icon"></i>
+                NIM
+              </label>
+              {{ form.nim }}
+              {% for error in form.nim.errors %}
+              <div class="text-danger small mt-1"><i class="bi bi-exclamation-circle me-1"></i>{{ error }}</div>
+              {% endfor %}
+            </div>
+
+            <div class="mb-3">
+              <label for="{{ form.program_studi.id_for_label }}" class="form-label">
+                <i class="bi bi-book input-icon"></i>
+                Program Studi
+              </label>
+              {{ form.program_studi }}
+              {% for error in form.program_studi.errors %}
+              <div class="text-danger small mt-1"><i class="bi bi-exclamation-circle me-1"></i>{{ error }}</div>
+              {% endfor %}
+            </div>
+
+            <div class="mb-3">
+              <label for="{{ form.angkatan.id_for_label }}" class="form-label">
+                <i class="bi bi-calendar-event input-icon"></i>
+                Angkatan
+              </label>
+              {{ form.angkatan }}
+              {% for error in form.angkatan.errors %}
+              <div class="text-danger small mt-1"><i class="bi bi-exclamation-circle me-1"></i>{{ error }}</div>
+              {% endfor %}
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">
+                <i class="bi bi-gender-ambiguous input-icon"></i>
+                Jenis Kelamin
+              </label>
+              {% for radio in form.jenis_kelamin %}
+              <div class="form-check">
+                {{ radio.tag }}
+                <label class="form-check-label" for="{{ radio.id_for_label }}">{{ radio.choice_label }}</label>
+              </div>
+              {% endfor %}
+            </div>
+
+            <div class="mb-3">
+              <label for="{{ form.email.id_for_label }}" class="form-label">
+                <i class="bi bi-envelope input-icon"></i>
+                Alamat Email Outlook
+              </label>
+              {{ form.email }}
+              {% for error in form.email.errors %}
+              <div class="text-danger small mt-1"><i class="bi bi-exclamation-circle me-1"></i>{{ error }}</div>
+              {% endfor %}
+            </div>
+
+            <div class="mb-3">
+              <label for="{{ form.password.id_for_label }}" class="form-label">
+                <i class="bi bi-lock input-icon"></i>
+                Password
+              </label>
+              {{ form.password }}
+              {% for error in form.password.errors %}
+              <div class="text-danger small mt-1"><i class="bi bi-exclamation-circle me-1"></i>{{ error }}</div>
+              {% endfor %}
+              <small class="form-text text-muted">Gunakan NIM Anda sebagai password awal.</small>
+            </div>
+
+            <div class="mb-3">
+              <label for="{{ form.kontak_whatsapp.id_for_label }}" class="form-label">
+                <i class="bi bi-whatsapp input-icon"></i>
+                Kontak WhatsApp
+              </label>
+              {{ form.kontak_whatsapp }}
+              {% for error in form.kontak_whatsapp.errors %}
+              <div class="text-danger small mt-1"><i class="bi bi-exclamation-circle me-1"></i>{{ error }}</div>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <h3 class="section-header mt-5">
+              <i class="bi bi-file-earmark-text-fill input-icon"></i>
+              Required Documents
+            </h3>
+
+            <div class="mb-3">
+              <label for="{{ form.bukti_konsultasi.id_for_label }}" class="form-label">
+                <i class="bi bi-file-earmark-pdf input-icon"></i>
+                Upload Bukti Konsultasi dengan Mentor
+              </label>
+              {{ form.bukti_konsultasi }}
+              {% for error in form.bukti_konsultasi.errors %}
+              <div class="text-danger small mt-1"><i class="bi bi-exclamation-circle me-1"></i>{{ error }}</div>
+              {% endfor %}
+              <small class="form-text text-muted">Accepted formats: PDF, JPG, PNG (Max 5MB)</small>
+            </div>
+
+            <div class="mb-4">
+              <label for="{{ form.sptjm.id_for_label }}" class="form-label">
+                <i class="bi bi-file-earmark-check input-icon"></i>
+                Upload Bukti SPTJM
+              </label>
+              {{ form.sptjm }}
+              {% for error in form.sptjm.errors %}
+              <div class="text-danger small mt-1"><i class="bi bi-exclamation-circle me-1"></i>{{ error }}</div>
+              {% endfor %}
+              <small class="form-text text-muted">Accepted formats: PDF, JPG, PNG (Max 5MB)</small>
+            </div>
+
+            <div class="mb-3">
+              <label for="{{ form.cv.id_for_label }}" class="form-label">
+                <i class="bi bi-file-person input-icon"></i>
+                Upload CV (Curriculum Vitae)
+              </label>
+              {{ form.cv }}
+              {% for error in form.cv.errors %}
+              <div class="text-danger small mt-1"><i class="bi bi-exclamation-circle me-1"></i>{{ error }}</div>
+              {% endfor %}
+              <small class="form-text text-muted">Format yang diterima: PDF (Maks 2MB)</small>
+            </div>
+
+            <div class="mb-3">
+              <label for="{{ form.portfolio.id_for_label }}" class="form-label">
+                <i class="bi bi-folder input-icon"></i>
+                Upload Portofolio
+              </label>
+              {{ form.portfolio }}
+              {% for error in form.portfolio.errors %}
+              <div class="text-danger small mt-1"><i class="bi bi-exclamation-circle me-1"></i>{{ error }}</div>
+              {% endfor %}
+              <small class="form-text text-muted">Opsional. Format yang diterima: PDF, ZIP (Maks 10MB)</small>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-gold w-100 mb-3">
+            <i class="bi bi-check-circle me-2"></i>Submit Registration
+          </button>
+
+          <div class="login-link">
+            <small>Already have an account? <a href="{% url 'login' %}"><i class="bi bi-box-arrow-in-right me-1"></i>Login here</a></small>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/register.js' %}"></script>
+  </body>
+</html>

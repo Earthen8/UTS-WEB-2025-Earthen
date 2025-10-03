@@ -1,0 +1,127 @@
+<!-- Nama: Earthen Krisdian Setya -->
+<!-- NIM: 23502410009 -->
+<!-- Prodi: DBT24 -->
+
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Laporan - COOP Program</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        :root {
+        --prasmul-blue: #0a2342;
+        --prasmul-gold: #ffc107;
+        --prasmul-gold-darker: #e0a800;
+        --light-gray: #f8f9fa;
+        --border-color: #dee2e6;
+        }
+        * {
+        font-family: "Poppins", sans-serif;
+        }
+
+        body {
+        background-color: var(--light-gray);
+        background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d4dae2' fill-opacity='0.4' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+        color: #212529;
+        }
+
+        .navbar-custom {
+        background-color: var(--prasmul-blue);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-custom .nav-link {
+        color: rgba(255, 255, 255, 0.8) !important;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        }
+        .navbar-custom .nav-link:hover,
+        .navbar-custom .nav-link.active {
+        color: #ffffff !important;
+        }
+        .navbar-custom .nav-link.active {
+        font-weight: 600;
+        }
+        .welcome-text {
+        color: rgba(255, 255, 255, 0.8);
+        }
+        .page-title {
+        color: var(--prasmul-blue);
+        font-weight: 700;
+        }
+        .detail-card {
+        background: #fff;
+        padding: 2.5rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        .detail-card h5 {
+        font-weight: 600;
+        color: var(--prasmul-blue);
+        margin-top: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #f0f0f0;
+        display: flex;
+        align-items: center;
+        }
+        .detail-card h5 i {
+        color: var(--prasmul-gold);
+        margin-right: 0.75rem;
+        font-size: 1.2rem;
+        }
+        .detail-card p {
+        color: #495057;
+        line-height: 1.7;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
+          <img src="https://www.prasetiyamulya.ac.id/office/publishing/wp-content/uploads/2021/03/Prasmul_logo_01-Putih.png" alt="Logo" width="200" />
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto me-3">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'lowongan' %}">Job Listings</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="{% url 'internship_reports' %}">Internship Reports</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="welcome-text d-none d-md-inline">Welcome, {{ request.user.mahasiswa.nama_lengkap }}</span>
+                    <a href="{% url 'logout' %}" class="btn btn-outline-light btn-sm">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-5">
+        <h1 class="mb-4 page-title">Monthly Report Details</h1>
+        <div class="detail-card">
+            <p class="text-muted">Submitted on: {{ laporan.created_at|date:"d F Y, H:i" }}</p>
+            <hr>
+            <h5><i class="bi bi-building"></i>Company Profile</h5>
+            <p>{{ laporan.profil_perusahaan|linebreaks }}</p>
+                
+            <h5><i class="bi bi-briefcase"></i>Job Description</h5>
+            <p>{{ laporan.jobdesk|linebreaks }}</p>
+                
+            <h5><i class="bi bi-people"></i>Work Environment</h5>
+            <p>{{ laporan.suasana_kerja|linebreaks }}</p>
+                
+            <h5><i class="bi bi-book"></i>Learnings from University</h5>
+            <p>{{ laporan.manfaat_perkuliahan|linebreaks }}</p>
+                
+            <h5><i class="bi bi-lightbulb"></i>Learning Gaps & Opportunities</h5>
+            <p>{{ laporan.kesenjangan_pembelajaran|linebreaks }}</p>
+
+            <a href="{% url 'internship_reports' %}" class="btn btn-outline-secondary mt-4"><i class="bi bi-arrow-left me-2"></i>Back to Reports</a>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

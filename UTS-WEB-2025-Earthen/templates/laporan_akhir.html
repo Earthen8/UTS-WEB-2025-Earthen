@@ -1,0 +1,108 @@
+<!-- Nama: Earthen Krisdian Setya -->
+<!-- NIM: 23502410009 -->
+<!-- Prodi: DBT24 -->
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Laporan Akhir</title>
+    <link rel="stylesheet" href="{% static 'css/laporan_akhir.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        :root {
+        --prasmul-blue: #0a2342;
+        --prasmul-gold: #ffc107;
+        --prasmul-gold-darker: #e0a800;
+        }
+        body {
+        font-family: "Poppins", sans-serif;
+        background-color: #f8f9fa;
+        background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d4dae2' fill-opacity='0.4' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+        }
+        .navbar-custom {
+        background-color: var(--prasmul-blue);
+        }
+        .navbar-custom .nav-link {
+        color: rgba(255, 255, 255, 0.8) !important;
+        font-weight: 500;
+        }
+        .navbar-custom .nav-link:hover,
+        .navbar-custom .nav-link.active {
+        color: #ffffff !important;
+        }
+        .welcome-text {
+        color: rgba(255, 255, 255, 0.8);
+        }
+        .form-container {
+        max-width: 800px;
+        margin: 2rem auto;
+        background: #fff;
+        padding: 2.5rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        .form-label {
+        font-weight: 600;
+        color: var(--prasmul-blue);
+        }
+        .btn-gold {
+        background-color: var(--prasmul-gold);
+        color: #000000;
+        border: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        }
+        .btn-gold:hover {
+        background-color: var(--prasmul-gold-darker);
+        }
+        .form-control:focus,
+        .form-select:focus {
+        border-color: var(--prasmul-gold);
+        box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.25);
+        }
+        .page-title {
+        color: var(--prasmul-blue);
+        font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
+          <img src="https://www.prasetiyamulya.ac.id/office/publishing/wp-content/uploads/2021/03/Prasmul_logo_01-Putih.png" alt="Logo" width="200" />
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto me-3">
+                    <li class="nav-item"><a class="nav-link active" href="{% url 'dashboard' %}">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'lowongan' %}">Job Listings</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'internship_reports' %}">Internship Reports</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="welcome-text d-none d-md-inline">Welcome, {{ request.user.mahasiswa.nama_lengkap }}</span>
+                    <a href="{% url 'logout' %}" class="btn btn-outline-light btn-sm">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container py-5">
+        <div class="form-container">
+            <h1 class="mb-2 page-title">Final Report Submission (UAS)</h1>
+            <p class="text-muted mb-4">Please upload your final internship report and related documents below.</p>
+            <hr class="mb-4">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_div }}
+                <button type="submit" class="btn btn-gold w-100 mt-4 btn-lg"><i class="bi bi-cloud-upload me-2"></i>Submit Final Report</button>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!-- Nama: Earthen Krisdian Setya -->
+<!-- NIM: 23502410009 -->
+<!-- Prodi: DBT24 -->
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Monthly Report - COOP Program</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+        font-family: "Poppins", sans-serif;
+        background-color: #f8f9fa;
+        }
+        .navbar-custom {
+        background-color: #0a2342;
+        }
+        .navbar-custom .nav-link,
+        .navbar-custom .navbar-brand {
+        color: #ffffff !important;
+        }
+        .navbar-custom .nav-link:hover {
+        color: #ffc107 !important;
+        }
+        .welcome-text {
+        color: #ffffff;
+        }
+        .form-container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: #fff;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .form-label {
+        font-weight: 600;
+        color: #0a2342;
+        }
+        .btn-gold {
+        background-color: #ffc107;
+        color: #000000;
+        border: none;
+        font-weight: 500;
+        }
+        .btn-gold:hover {
+        background-color: #e0a800;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
+          <img src="https://www.prasetiyamulya.ac.id/office/publishing/wp-content/uploads/2021/03/Prasmul_logo_01-Putih.png" alt="Logo" width="200" />
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto me-3">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'lowongan' %}">Job Listings</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'internship_reports' %}">Internship Reports</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="welcome-text d-none d-md-inline">Welcome, {{ request.user.mahasiswa.nama_lengkap }}</span>
+                    <a href="{% url 'logout' %}" class="btn btn-outline-light btn-sm">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-5">
+        <div class="form-container">
+            <h1 class="mb-4">Monthly Progress Report</h1>
+            <p class="text-muted mb-4">
+              Silakan isi laporan kemajuan bulanan Anda. Laporan ini akan membantu mentor akademik Anda dalam memantau perkembangan Anda selama magang.
+            </p>
+
+            <form method="post">
+                {% csrf_token %}
+
+                {% if form.non_field_errors %}
+                    <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+                {% endif %}
+
+                <div class="mb-3">
+                    <label for="{{ form.profil_perusahaan.id_for_label }}" class="form-label">Profil Perusahaan</label>
+                    {{ form.profil_perusahaan }}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.jobdesk.id_for_label }}" class="form-label">Jobdesk</label>
+                    {{ form.jobdesk }}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.suasana_kerja.id_for_label }}" class="form-label">Suasana Lingkungan Pekerjaan</label>
+                    {{ form.suasana_kerja }}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.manfaat_perkuliahan.id_for_label }}" class="form-label">Apa yang Didapatkan dari Perkuliahan yang Berguna untuk Pekerjaan</tlabel>
+                    {{ form.manfaat_perkuliahan }}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.kesenjangan_pembelajaran.id_for_label }}" class="form-label">Apa yang Berguna pada Perusahaan tapi Belum Didapatkan dalam Pembelajaran</label>
+                    {{ form.kesenjangan_pembelajaran }}
+                </div>
+
+                <button type="submit" class="btn btn-gold w-100 mt-3">Submit Report</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

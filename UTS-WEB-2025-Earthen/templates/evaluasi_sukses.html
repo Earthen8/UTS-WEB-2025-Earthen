@@ -1,0 +1,73 @@
+<!-- Nama: Earthen Krisdian Setya -->
+<!-- NIM: 23502410009 -->
+<!-- Prodi: DBT24 -->
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terima Kasih!</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+        --prasmul-blue: #0a2342;
+        --prasmul-gold: #ffc107;
+        }
+        body {
+        font-family: "Poppins", sans-serif;
+        background-color: #f0f2f5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4dae2' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .success-container {
+        max-width: 600px;
+        background: #fff;
+        padding: 3rem;
+        border-radius: 12px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        border-top: 5px solid var(--prasmul-gold);
+        }
+        .success-icon {
+        font-size: 4rem;
+        color: #28a745;
+        }
+        h1 {
+        color: var(--prasmul-blue);
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        }
+        p.lead {
+        color: #495057;
+        font-size: 1.1rem;
+        }
+        .btn-primary {
+        background-color: var(--prasmul-blue);
+        border-color: var(--prasmul-blue);
+        font-weight: 500;
+        padding: 0.6rem 1.5rem;
+        transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+        background-color: #081c33;
+        border-color: #081c33;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5 text-center success-container">
+        <i class="bi bi-check-circle-fill success-icon mb-3"></i>
+        <h1 class="mb-3">Thank You!</h1>
+        <p class="lead mb-4">{{ pesan }}</p>
+        <a href="{% url 'index' %}" class="btn btn-primary mt-3">Return to Home</a>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

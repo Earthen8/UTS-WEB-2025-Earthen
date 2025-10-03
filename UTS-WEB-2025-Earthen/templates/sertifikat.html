@@ -1,0 +1,148 @@
+<!-- Nama: Earthen Krisdian Setya -->
+<!-- NIM: 23502410009 -->
+<!-- Prodi: DBT24 -->
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sertifikat Program COOP</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        :root {
+        --prasmul-blue: #0a2342;
+        --prasmul-gold: #ffc107;
+        }
+        body {
+        font-family: "Poppins", sans-serif;
+        background-color: #f0f2f5;
+        background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d4dae2' fill-opacity='0.4' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+        }
+        .navbar-custom {
+        background-color: var(--prasmul-blue);
+        }
+        .navbar-custom .nav-link {
+        color: rgba(255, 255, 255, 0.8) !important;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        }
+        .navbar-custom .nav-link:hover,
+        .navbar-custom .nav-link.active {
+        color: #ffffff !important;
+        }
+        .welcome-text {
+        color: rgba(255, 255, 255, 0.8);
+        }
+
+        .certificate-container {
+        max-width: 800px;
+        margin: 2rem auto;
+        background: #fff;
+        padding: 3rem;
+        border: 10px solid var(--prasmul-blue);
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        position: relative;
+        }
+        .certificate-container::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        border: 2px solid var(--prasmul-gold);
+        border-radius: 6px;
+        }
+        .certificate-header h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--prasmul-blue);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        }
+        .certificate-body {
+        margin: 2rem 0;
+        }
+        .certificate-body p {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+        color: #495057;
+        }
+        .certificate-body strong {
+        display: block;
+        font-size: 1.5rem;
+        margin: 0.5rem 0;
+        color: var(--prasmul-blue);
+        font-weight: 600;
+        }
+        .certificate-footer .grade {
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--prasmul-blue);
+        border: 4px solid var(--prasmul-gold);
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        line-height: 92px;
+        margin: 1rem auto;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
+          <img src="https://www.prasetiyamulya.ac.id/office/publishing/wp-content/uploads/2021/03/Prasmul_logo_01-Putih.png" alt="Logo" width="200" />
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto me-3">
+                    <li class="nav-item"><a class="nav-link active" href="{% url 'dashboard' %}">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'lowongan' %}">Job Listings</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'internship_reports' %}">Internship Reports</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="welcome-text d-none d-md-inline">Welcome, {{ request.user.mahasiswa.nama_lengkap }}</span>
+                    <a href="{% url 'logout' %}" class="btn btn-outline-light btn-sm">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-5">
+        <div class="certificate-container">
+            <div class="certificate-header mb-4">
+                <img src="https://www.prasetiyamulya.ac.id/wp-content/uploads/2020/01/Logo-Universitas-Prasetiya-Mulya.png" alt="Logo" width="300" class="mb-3">
+                <h1>Certificate of Completion</h1>
+                <p class="lead mt-3">This certificate is proudly awarded to</p>
+            </div>
+            
+            <div class="certificate-body">
+                <strong>{{ mahasiswa.nama_lengkap }}</strong>
+                <p>NIM: {{ mahasiswa.nim }}</p>
+                <p>{{ mahasiswa.get_program_studi_display }}</p>
+                <br>
+                <p>for successfully completing the Co-operative Education Program at</p>
+                <strong>{{ magang.nama_perusahaan }}</strong>
+                <p>during the period of</p>
+                <p><strong>{{ magang.tanggal_mulai|date:"d F Y" }} - {{ magang.tanggal_selesai|date:"d F Y" }}</strong></p>
+            </div>
+
+            <div class="certificate-footer mt-5">
+                <p>has completed the program with a final grade of</p>
+                <div class="grade">
+                    {{ magang.nilai_akhir | default:"-" }}
+                </div>
+                <p class="text-muted small">for the Co-operative Education Program Course.</p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

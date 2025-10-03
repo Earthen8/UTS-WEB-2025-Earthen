@@ -1,0 +1,145 @@
+<!-- Nama: Earthen Krisdian Setya -->
+<!-- NIM: 23502410009 -->
+<!-- Prodi: DBT24 -->
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ lowongan.posisi }} - COOP Program</title>
+    <link rel="stylesheet" href="{% static 'css/lowongan_detail.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+        font-family: "Poppins", sans-serif;
+        }
+        :root {
+        --prasmul-blue: #0a2342;
+        --prasmul-gold: #ffc107;
+        --prasmul-gold-darker: #e0a800;
+        }
+        body {
+        background-color: #f8f9fa;
+        background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d4dae2' fill-opacity='0.4' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+        color: #212529;
+        }
+        .navbar-custom {
+        background-color: #0a2342;
+        }
+        .navbar-custom .nav-link {
+        color: rgba(255, 255, 255, 0.8) !important;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        }
+        .navbar-custom .nav-link:hover,
+        .navbar-custom .nav-link.active {
+        color: #ffffff !important;
+        }
+        .navbar-custom .nav-link.active {
+        font-weight: 600;
+        }
+        .welcome-text {
+        color: rgba(255, 255, 255, 0.8);
+        }
+        .detail-container {
+        max-width: 800px;
+        margin: 2rem auto;
+        background: #fff;
+        padding: 2.5rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        .detail-container h1 {
+        color: var(--prasmul-blue);
+        font-weight: 700;
+        font-size: 2.25rem;
+        }
+        .detail-container h4 {
+        color: #495057;
+        font-weight: 500;
+        font-size: 1.25rem;
+        }
+        .detail-container h5 {
+        color: var(--prasmul-blue);
+        font-weight: 600;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        border-left: 4px solid var(--prasmul-gold);
+        padding-left: 1rem;
+        }
+        .badge {
+        background-color: var(--prasmul-blue) !important;
+        color: #ffffff;
+        padding: 0.5em 0.75em;
+        font-size: 0.85rem;
+        font-weight: 500;
+        }
+        .btn-gold {
+        background-color: var(--prasmul-gold);
+        color: #000000;
+        border: none;
+        font-weight: 600;
+        padding: 0.75rem 1.5rem;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+        }
+        .btn-gold:hover {
+        background-color: var(--prasmul-gold-darker);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
+          <img src="https://www.prasetiyamulya.ac.id/office/publishing/wp-content/uploads/2021/03/Prasmul_logo_01-Putih.png" alt="Logo" width="200" />
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto me-3">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="{% url 'lowongan' %}">Job Listings</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'internship_reports' %}">Internship Reports</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="welcome-text d-none d-md-inline">Welcome, {{ request.user.mahasiswa.nama_lengkap }}</span>
+                    <a href="{% url 'logout' %}" class="btn btn-outline-light btn-sm">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-5">
+        <div class="detail-container">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+                <div>
+                    <h1 class="mb-1">{{ lowongan.posisi }}</h1>
+                    <h4 class="mb-2">{{ lowongan.nama_perusahaan }}</h4>
+                    <span class="badge">{{ lowongan.lokasi }}</span>
+                </div>
+            </div>
+            
+            <hr>
+            
+            <h5 class="mt-4">Job Description</h5>
+            <p>{{ lowongan.deskripsi|linebreaks }}</p>
+            
+            <div class="text-center mt-5">
+              {% if lowongan.link_aplikasi %}
+              <a href="{{ lowongan.link_aplikasi }}" class="btn btn-gold" target="_blank">Apply Now</a>
+              {% else %}
+              <p class="mt-4 text-muted">Aplikasi untuk lowongan ini dilakukan secara manual atau melalui instruksi lain dari perusahaan.</p>
+              {% endif %}
+              <div class="mt-4">
+                <a href="{% url 'lowongan' %}" class="btn btn-link text-secondary">Back to Listings</a>
+              </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

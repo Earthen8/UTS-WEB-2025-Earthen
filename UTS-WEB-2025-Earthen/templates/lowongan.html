@@ -1,0 +1,183 @@
+<!-- Nama: Earthen Krisdian Setya -->
+<!-- NIM: 23502410009 -->
+<!-- Prodi: DBT24 -->
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Listings - COOP Program</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+      :root {
+        --prasmul-blue: #0a2342;
+        --prasmul-gold: #ffc107;
+        --prasmul-gold-darker: #e0a800;
+        --light-gray: #f8f9fa;
+        --border-color: #dee2e6;
+      }
+      * {
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background-color: #f8f9fa;
+        background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d4dae2' fill-opacity='0.4' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+        color: #212529;
+      }
+
+      .navbar-custom {
+        background-color: var(--prasmul-blue);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      .navbar-custom .nav-link {
+        color: rgba(255, 255, 255, 0.8) !important;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+      .navbar-custom .nav-link:hover,
+      .navbar-custom .nav-link.active {
+        color: #ffffff !important;
+      }
+      .navbar-custom .nav-link.active {
+        font-weight: 600;
+      }
+
+      .btn {
+        transition: all 0.3s ease;
+        border-radius: 0.375rem;
+        font-weight: 500;
+      }
+      .btn-gold {
+        background-color: var(--prasmul-gold);
+        color: #000000;
+        border: none;
+      }
+      .btn-gold:hover {
+        background-color: var(--prasmul-gold-darker);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .card-ui {
+        background: #ffffff;
+        border: 1px solid var(--border-color);
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+      }
+      .card-ui:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      .form-label {
+        font-weight: 600;
+        color: var(--prasmul-blue);
+      }
+      .form-control:focus,
+      .form-select:focus {
+        border-color: var(--prasmul-gold);
+        box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.25);
+      }
+
+      .page-title {
+        color: var(--prasmul-blue);
+        font-weight: 700;
+      }
+
+      .welcome-text {
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .job-card {
+        background: #ffffff;
+        border: 1px solid var(--border-color);
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        height: 100%;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+      }
+      .job-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      }
+      .job-card h3 {
+        color: var(--prasmul-blue);
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-custom">
+      <div class="container">
+        <img src="https://www.prasetiyamulya.ac.id/office/publishing/wp-content/uploads/2021/03/Prasmul_logo_01-Putih.png" alt="Logo" width="200" />
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto me-3">
+            <li class="nav-item"><a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link active" href="{% url 'lowongan' %}">Job Listings</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'internship_reports' %}">Internship Reports</a></li>
+          </ul>
+          <div class="d-flex align-items-center gap-2">
+            <span class="welcome-text d-none d-md-inline">Welcome, {{ request.user.mahasiswa.nama_lengkap }}</span>
+            <a href="{% url 'logout' %}" class="btn btn-outline-light btn-sm">Logout</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container py-5">
+      <h1 class="mb-4 page-title">Internship Opportunities</h1>
+
+      <div class="card-ui mb-4">
+        <form method="get" action="{% url 'lowongan' %}" class="row g-2 align-items-center">
+          <div class="col-md">
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-search"></i></span>
+              <input type="text" class="form-control" name="q" placeholder="Search by position, company, or location..." value="{{ request.GET.q }}" />
+            </div>
+          </div>
+          <div class="col-md-auto">
+            <button type="submit" class="btn btn-gold w-100">Search</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="row g-4">
+        {% for lowongan in semua_lowongan %}
+            <div class="col-lg-4 col-md-6">
+              <div class="job-card d-flex flex-column">
+                <div class="flex-grow-1">
+                  <h3>{{ lowongan.posisi }}</h3>
+                  <p class="text-muted fw-semibold mb-2"><i class="bi bi-building me-2"></i>{{ lowongan.nama_perusahaan }}</p>
+                  <p class="text-muted small mb-3"><i class="bi bi-geo-alt me-2"></i>{{ lowongan.lokasi }}</p>
+                  <p class="small">{{ lowongan.deskripsi|truncatewords:25 }}</p>
+                </div>
+                <a href="{% url 'lowongan_detail' lowongan.id %}" class="btn btn-outline-primary w-100 mt-3"><i class="bi bi-info-circle me-2"></i>View Details</a>
+              </div>
+            </div>
+        {% empty %}
+            <div class="col-12">
+                <div class="card-ui text-center text-muted p-5">
+                    <i class="bi bi-exclamation-circle-fill fs-1 mb-3"></i>
+                    <h4>No Openings Available</h4>
+                    <p class="mb-0">There are currently no internship listings. Please check back later.</p>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+      </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

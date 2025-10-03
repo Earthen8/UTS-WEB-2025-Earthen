@@ -1,0 +1,757 @@
+<!-- Nama: Earthen Krisdian Setya -->
+<!-- NIM: 23502410009 -->
+<!-- Prodi: DBT24 -->
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>COOP - Universitas Prasetiya Mulya</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+      * {
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background-color: #f8f9fa;
+        color: #212529;
+        overflow-x: hidden;
+        opacity: 0;
+        animation: pageLoad 0.8s ease-out forwards;
+      }
+
+      @keyframes pageLoad {
+        to {
+          opacity: 1;
+        }
+      }
+
+      .decoration-circle {
+        position: fixed;
+        border-radius: 50%;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 193, 7, 0.1),
+          rgba(255, 193, 7, 0.05)
+        );
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .circle-1 {
+        width: 300px;
+        height: 300px;
+        top: 10%;
+        right: -100px;
+        animation: float 20s ease-in-out infinite;
+      }
+
+      .circle-2 {
+        width: 200px;
+        height: 200px;
+        bottom: 20%;
+        left: -50px;
+        animation: float 15s ease-in-out infinite reverse;
+      }
+
+      .circle-3 {
+        width: 150px;
+        height: 150px;
+        top: 60%;
+        right: 10%;
+        animation: float 18s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-30px) rotate(180deg);
+        }
+      }
+
+      .navbar-custom {
+        background-color: rgba(10, 35, 66, 0.95);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        padding: 1rem 0;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        position: relative;
+        z-index: 1000;
+      }
+
+      .navbar-custom::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #ffc107, transparent);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .navbar-custom.scrolled {
+        padding: 0.5rem 0;
+        background-color: rgba(10, 35, 66, 0.98);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .navbar-custom.scrolled::after {
+        opacity: 1;
+      }
+
+      .navbar-custom .navbar-brand {
+        transition: transform 0.3s ease;
+      }
+
+      .navbar-custom .navbar-brand:hover {
+        transform: scale(1.05);
+      }
+
+      .navbar-custom .nav-link {
+        color: #ffffff !important;
+        font-weight: 500;
+        padding: 0.5rem 1rem !important;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .navbar-custom .nav-link::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #ffc107, #e0a800);
+        transform: translateX(-50%);
+        transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .navbar-custom .nav-link:hover::before {
+        width: 80%;
+      }
+
+      .btn {
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+      }
+
+      .btn::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.5);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+      }
+
+      .btn:active::before {
+        width: 300px;
+        height: 300px;
+      }
+
+      .btn-gold {
+        background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%);
+        color: #000000;
+        border: none;
+        font-weight: 600;
+        padding: 0.6rem 1.5rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+      }
+
+      .btn-gold:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(255, 193, 7, 0.5);
+        color: #000000;
+      }
+
+      .btn-outline-light {
+        border: 2px solid #ffffff;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-outline-light::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: #ffffff;
+        transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: -1;
+      }
+
+      .btn-outline-light:hover::after {
+        left: 0;
+      }
+
+      .btn-outline-light:hover {
+        color: #0a2342;
+        transform: translateY(-2px);
+      }
+
+      .hero-section {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        text-align: center;
+        overflow: hidden;
+      }
+
+      .hero-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 120%;
+        background: linear-gradient(
+            135deg,
+            rgba(10, 35, 66, 0.95),
+            rgba(10, 35, 66, 0.85)
+          ),
+          url("https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&h=900&fit=crop")
+            center/cover;
+        background-attachment: fixed;
+        transform: translateZ(0);
+        will-change: transform;
+      }
+
+      .hero-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+          circle at 20% 50%,
+          rgba(255, 193, 7, 0.15) 0%,
+          transparent 50%
+        );
+        animation: heroGlow 8s ease-in-out infinite;
+        z-index: 1;
+      }
+
+      @keyframes heroGlow {
+        0%,
+        100% {
+          opacity: 0.5;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.1);
+        }
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        animation: heroReveal 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      }
+
+      @keyframes heroReveal {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero-content h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        color: #ffffff;
+        text-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+        line-height: 1.2;
+      }
+
+      .hero-content p {
+        font-size: 1.3rem;
+        margin-bottom: 2.5rem;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.8;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+        animation: heroReveal 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.2s backwards;
+      }
+
+      .hero-content .btn {
+        padding: 1rem 2.5rem;
+        font-size: 1.1rem;
+        border-radius: 50px;
+        animation: heroReveal 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.4s backwards;
+      }
+
+      .features-section {
+        padding: 5rem 0;
+        position: relative;
+        z-index: 1;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 4rem;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .section-title.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .section-title h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #0a2342;
+        margin-bottom: 1rem;
+        position: relative;
+        display: inline-block;
+      }
+
+      .section-title h2::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #ffc107, #e0a800);
+        border-radius: 2px;
+        transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .section-title.visible h2::after {
+        width: 60%;
+      }
+
+      .feature-card {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 2.5rem;
+        height: 100%;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 2px solid transparent;
+        position: relative;
+        overflow: hidden;
+        animation: cardFloat 6s ease-in-out infinite;
+      }
+
+      .feature-card:nth-child(2) {
+        animation-delay: 2s;
+      }
+
+      .feature-card:nth-child(3) {
+        animation-delay: 4s;
+      }
+
+      @keyframes cardFloat {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      .feature-card::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          45deg,
+          transparent,
+          rgba(255, 193, 7, 0.1),
+          transparent
+        );
+        transform: rotate(45deg);
+        transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .feature-card:hover::before {
+        left: 100%;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-15px) scale(1.02);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        border-color: #ffc107;
+      }
+
+      .feature-card h3 {
+        color: #0a2342;
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        position: relative;
+        padding-left: 2.5rem;
+        transition: color 0.3s ease;
+      }
+
+      .feature-card:hover h3 {
+        color: #ffc107;
+      }
+
+      .feature-card h3::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 30px;
+        height: 3px;
+        background: linear-gradient(135deg, #ffc107, #e0a800);
+        border-radius: 2px;
+        transition: width 0.3s ease;
+      }
+
+      .feature-card:hover h3::before {
+        width: 40px;
+      }
+
+      .feature-card p {
+        color: #6c757d;
+        line-height: 1.8;
+        margin-bottom: 0;
+        transition: color 0.3s ease;
+      }
+
+      .feature-card:hover p {
+        color: #212529;
+      }
+
+      .companies-section {
+        padding: 5rem 0;
+        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .companies-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+            circle at 20% 30%,
+            rgba(255, 193, 7, 0.05) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 70%,
+            rgba(10, 35, 66, 0.03) 0%,
+            transparent 50%
+          );
+      }
+
+      .companies-section .container {
+        position: relative;
+        z-index: 1;
+      }
+
+      .glass-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 20px;
+        padding: 3rem;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .glass-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .companies-section h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #0a2342;
+        margin-bottom: 1rem;
+      }
+
+      .companies-section p {
+        font-size: 1.1rem;
+        color: #6c757d;
+        line-height: 1.8;
+      }
+
+      footer {
+        background: linear-gradient(135deg, #0a2342 0%, #1a4066 100%);
+        color: #ffffff;
+        padding: 2rem 0;
+        margin-top: 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      footer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #ffc107, transparent);
+      }
+
+      footer p {
+        margin-bottom: 0;
+        opacity: 0.9;
+      }
+
+      .scroll-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, #ffc107, #e0a800);
+        color: #0a2342;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1000;
+        box-shadow: 0 5px 20px rgba(255, 193, 7, 0.4);
+      }
+
+      .scroll-top.show {
+        opacity: 1;
+        visibility: visible;
+        animation: bounceIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      @keyframes bounceIn {
+        0% {
+          transform: scale(0) rotate(0deg);
+        }
+        50% {
+          transform: scale(1.1) rotate(180deg);
+        }
+        100% {
+          transform: scale(1) rotate(360deg);
+        }
+      }
+
+      .scroll-top:hover {
+        background: linear-gradient(135deg, #0a2342, #1a4066);
+        color: #ffc107;
+        transform: translateY(-5px) rotate(360deg);
+        box-shadow: 0 10px 30px rgba(10, 35, 66, 0.4);
+      }
+
+      @media (max-width: 768px) {
+        .hero-content h1 {
+          font-size: 2.2rem;
+        }
+
+        .hero-content p {
+          font-size: 1.1rem;
+        }
+
+        .section-title h2 {
+          font-size: 2rem;
+        }
+
+        .navbar-custom .navbar-brand img {
+          max-width: 150px;
+        }
+
+        .feature-card {
+          animation: none;
+        }
+      }
+    </style>
+</head>
+<body>
+    <div class="decoration-circle circle-1"></div>
+    <div class="decoration-circle circle-2"></div>
+    <div class="decoration-circle circle-3"></div>
+
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'index' %}">
+          <img
+            src="https://www.prasetiyamulya.ac.id/office/publishing/wp-content/uploads/2021/03/Prasmul_logo_01-Putih.png"
+            alt="Logo"
+            width="200"
+          />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto me-3">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'index' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'index' %}#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'index' %}#companies"
+                >For Companies</a
+              >
+            </li>
+          </ul>
+          <div class="d-flex gap-2">
+            <a href="{% url 'login' %}" class="btn btn-outline-light">
+              <i class="bi bi-box-arrow-in-right me-1"></i>Login
+            </a>
+            <a href="{% url 'register' %}" class="btn btn-gold">
+              <i class="bi bi-person-plus me-1"></i>Register
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section class="hero-section" id="home">
+      <div class="hero-bg"></div>
+      <div class="hero-content">
+        <h1>
+          Mulai Karier Profesionalmu dengan Program COOP Prasetiya Mulya
+        </h1>
+        <p>
+          Terhubung dengan perusahaan ternama, raih pengalaman nyata, dan
+          bangun jaringan profesional lewat program kooperatif kami.
+        </p>
+        <a href="{% url 'register' %}" class="btn btn-gold btn-lg">
+          <i class="bi bi-rocket-takeoff me-2"></i>Register Now!
+        </a>
+      </div>
+    </section>
+
+    <section class="features-section" id="about">
+      <div class="container">
+        <div class="section-title">
+          <h2>Why Choose COOP Prasetiya Mulya?</h2>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="feature-card">
+              <h3>Real Experience</h3>
+              <p>
+                Raih pengalaman nyata lewat magang terarah di
+                perusahaan-perusahaan ternama. Kamu bisa langsung menerapkan apa
+                yang dipelajari di kelas ke situasi kerja sebenarnya, sambil
+                mulai membangun fondasi karier yang solid.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="feature-card">
+              <h3>Professional Networking</h3>
+              <p>
+                Bangun relasi yang berarti dengan para profesional industri,
+                mentor, dan rekan sejawat. Perluas jaringanmu dan buka peluang
+                karier lewat ekosistem mitra kami yang luas.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="feature-card">
+              <h3>Expert Mentorship</h3>
+              <p>
+                Dapatkan bimbingan dari mentor berpengalaman yang mendukung
+                perkembangan profesionalmu. Kamu juga akan menerima masukan dan
+                saran karier yang dipersonalisasi untuk membantumu menjalani
+                magang dengan sukses.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="companies-section" id="companies">
+      <div class="container">
+        <div class="glass-card text-center">
+          <h2>For Companies</h2>
+          <p>
+            Bermitra dengan Prasetiya Mulya untuk mendapatkan mahasiswa berbakat
+            dan bersemangat yang siap berkontribusi bagi organisasi Anda.
+            Program COOP kami menawarkan penempatan magang terstruktur dengan
+            dukungan berkelanjutan dari tim akademik.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="text-center">
+      <div class="container">
+        <p>&copy; 2025 Universitas Prasetiya Mulya COOP Program</p>
+      </div>
+    </footer>
+
+    <div class="scroll-top" id="scrollTop">
+      <i class="bi bi-arrow-up"></i>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/index.js' %}"></script>
+</body>
+</html>
