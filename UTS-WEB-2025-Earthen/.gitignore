@@ -1,9 +1,15 @@
-# Python
+venv/
+
+db.sqlite3
+db.sqlite3-journal
+
+dokumen/
+
 __pycache__/
 *.pyc
 
-# Virtual Environment
-venv/
+.DS_Store
+.vscode/
+.idea/
 
-# Database
-db.sqlite3
+*.mp4
