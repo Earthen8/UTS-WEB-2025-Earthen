@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-R-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ berita.judul }}</title>
+    
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 20px;
+        }
+        /* Konten utama artikel */
+        .artikel-konten {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        h1 {
+            color: #222;
+            margin-top: 0;
+        }
+        .artikel-konten img {
+            max-width: 100%; /* Membuat gambar responsif */
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .tanggal {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+            display: block;
+        }
+        .link-kembali {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #0056b3;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .link-kembali:hover {
+            text-decoration: underline;
+        }
+        
+        /* Area Komentar */
+        .area-komentar {
+            margin-top: 30px;
+        }
+        .komentar {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+        }
+        .komentar strong {
+            color: #0056b3;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .komentar small {
+            color: #777;
+            font-size: 0.85em;
+        }
+        .komentar p {
+            margin-top: 10px;
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    
+    <a href="{% url 'daftar-berita' %}" class="link-kembali">&lt;-- Kembali ke Daftar Berita</a>
+    
+    <div class="artikel-konten">
+        <h1>{{ berita.judul }}</h1>
+        <strong class="tanggal">Tanggal: {{ berita.tanggal|date:"d F Y \p\u\k\u\l H:i" }}</strong>
+
+        {% if berita.gambar %}
+            <img src="{{ berita.gambar.url }}" alt="{{ berita.judul }}">
+        {% endif %}
+
+        <p>{{ berita.isi|linebreaks }}</p>
+    </div>
+
+    <div class="area-komentar">
+        <h2>Komentar</h2>
+
+        {% if daftar_komentar %}
+            {% for komen in daftar_komentar %}
+                <div class="komentar">
+                    <strong>{{ komen.nama }}</strong>
+                    <small>({{ komen.tanggal|date:"d F Y, H:i" }})</small>
+                    <p>{{ komen.isi|linebreaks }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Belum ada komentar untuk berita ini.</p>
+        {% endif %}
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-R-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Berita (via API)</title>
+    
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 20px;
+        }
+        h1 {
+            color: #222;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        .berita-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .berita-item h2 { margin-top: 0; }
+        .berita-item h2 a {
+            text-decoration: none;
+            color: #0056b3;
+        }
+        .berita-item h2 a:hover {
+            color: #003d82;
+            text-decoration: underline;
+        }
+        .berita-item p {
+            margin-bottom: 0;
+            color: #666;
+            font-size: 0.9em;
+        }
+        #loading {
+            font-style: italic;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <h1>Daftar Berita</h1>
+    
+    <div id="berita-container">
+        <p id="loading">Sedang memuat berita dari API...</p>
+    </div>
+
+
+    <script> 
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            fetch('/api/berita/')
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('berita-container');
+                    container.innerHTML = ''; 
+
+                    data.forEach(berita => {
+                        const item = document.createElement('div');
+                        item.className = 'berita-item';
+
+                        const tanggal = new Date(berita.tanggal).toLocaleDateString('id-ID', {
+                            day: 'numeric',
+                            month: 'long',
+                            year: 'numeric'
+                        });
+
+                        const linkUrl = `/berita/${berita.id}/`;
+
+                        item.innerHTML = `
+                            <h2>
+                                <a href="${linkUrl}">
+                                    ${berita.judul}
+                                </a>
+                            </h2>
+                            <p>Dipublikasikan: ${tanggal}</p>
+                        `;
+                        container.appendChild(item);
+                    });
+
+                })
+                .catch(error => {
+                    console.error('Error mengambil API:', error);
+                    const container = document.getElementById('berita-container');
+                    container.innerHTML = '<p style="color: red;">Gagal memuat berita. Coba lagi nanti.</p>';
+                });
+        });
+    </script>
+
+</body>
+</html>
